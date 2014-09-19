@@ -35,6 +35,14 @@ group :development do
   gem 'spring'
 end
 
+group :production do
+  # Adding this for AWS
+  gem 'unicorn'
+  # Adding this for Heroku database
+  gem 'pg'
+end
+
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

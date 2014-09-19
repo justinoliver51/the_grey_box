@@ -35,12 +35,12 @@ group :development do
   gem 'spring'
 end
 
+# Adding this for AWS
 group :production do
-  # Adding this for AWS
   gem 'unicorn'
   gem 'execjs'
   gem 'therubyracer', :platforms => :ruby
-
+  gem 'mysql2'
   # Adding this for Heroku database
   #gem 'pg'
 end

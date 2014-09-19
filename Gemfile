@@ -39,7 +39,7 @@ group :production do
   # Adding this for AWS
   gem 'unicorn'
   # Adding this for Heroku database
-  gem 'pg'
+  #gem 'pg'
 end
 
 

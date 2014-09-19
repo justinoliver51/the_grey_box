@@ -38,7 +38,7 @@ end
 group :production do
   # Adding this for AWS
   gem 'unicorn'
-  #gem 'execjs'
+  gem 'execjs'
   gem 'therubyracer', :platforms => :ruby
 
   # Adding this for Heroku database

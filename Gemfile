@@ -38,6 +38,10 @@ end
 group :production do
   # Adding this for AWS
   gem 'unicorn'
+  # You must have an ExecJS supported runtime in order to use CoffeeScript.
+  gem 'execjs'
+  # Used to find Javascript at runtime
+  gem 'therubyracer', :platforms => :ruby
   # Adding this for Heroku database
   gem 'pg'
 end

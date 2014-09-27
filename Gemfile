@@ -37,13 +37,14 @@ end
 
 # Adding this for AWS
 group :production do
-# Responsible for setting up connections such as MySQL.
+  # Responsible for setting up connections such as MySQL.
   gem 'unicorn'
-# You must have an ExecJS supported runtime in order to use CoffeeScript.
+  # You must have an ExecJS supported runtime in order to use CoffeeScript.
   gem 'execjs'
-# Used to find Javascript at runtime
+  # Used to find Javascript at runtime
   gem 'therubyracer', :platforms => :ruby
-  gem 'mysql2'
+  # Used to connect to a MySQL database
+  #gem 'mysql2'
   # Adding this for Heroku database
   #gem 'pg'
 end

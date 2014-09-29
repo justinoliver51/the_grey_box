@@ -3,6 +3,9 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.4'
+# Using Sprockets and Sass to add image paths to CSS
+# Must be before sass-rails or get a pre-compile error
+gem 'sprockets', '2.11.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -23,8 +26,6 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 
 # Justin added these:
-# Using Sprockets and Sass to add image paths to CSS
-gem 'sprockets', '2.11.0'
 #gem 'sass-rails', '4.0.2'
 
 group :development do

@@ -44,7 +44,7 @@ group :production do
   # Used to find Javascript at runtime
   gem 'therubyracer', :platforms => :ruby
   # Used to connect to a MySQL database
-  #gem 'mysql2'
+  gem 'mysql2'
   # Adding this for Heroku database
   #gem 'pg'
 end

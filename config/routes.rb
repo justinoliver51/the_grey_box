@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   root 'pages#landing_page'
+  
+
+
   get 'pages/checkout'
-  #get 'pages/checkout/:id' # doesn't work
-  #get '/patients/:id', to: 'patients#show', as: 'patient'
-  #get '/pages/checkout/:price', to: 'patients#show', as: 'price'
+  get 'pages/checkout:id' => "pages#checkout"
   get "pages/checkout_with_paypal"
   #get "paypal_express/checkout"
 

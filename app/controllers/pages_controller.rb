@@ -8,7 +8,9 @@ class PagesController < ApplicationController
   end
 
   def checkout
-      @product = Post.find(params[:id])
+      @order = Order.new
+      @account = Account.new
+      @product = Product.find(params[:product_id])
   end
 
   def checkout_with_paypal

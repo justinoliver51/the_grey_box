@@ -1,6 +1,6 @@
-class CreateInvoices < ActiveRecord::Migration
+class CreateOrders < ActiveRecord::Migration
   def change
-    create_table :invoices do |t|
+    create_table :orders do |t|
       t.integer :transaction_id
       t.decimal :price
       t.string :status

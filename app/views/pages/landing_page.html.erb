@@ -213,7 +213,7 @@ Mark Stringer - <a href="#">webfolio.com</a> </span>
 <div class="bggray price">
 <div class="package">Basic</div>
 <div class="divider"></div>
-<div class="amount"><%= ActionView::Base.new.number_to_currency(Product.find(5).price, :unit => "$") %></div>
+<div class="amount"><%= ActionView::Base.new.number_to_currency(@products.find(1).price, :unit => "$") %></div>
 <div class="duration">monthly</div>
 </div>
 <div class="featcontent">
@@ -225,14 +225,14 @@ Mark Stringer - <a href="#">webfolio.com</a> </span>
 <li>1000 GB Bandwith</li>
 </ul>
 </div>
-<div class="signup-btn"><a href=<%= pages_checkout_path() %>>Signup now</a></div>
+<div class="signup-btn"><a href=<%= pages_checkout_path(:product_id => @products.find(1).id) %>>Signup now</a></div>
 </div>
 </div>
 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 pricing-box">
 <div class="bgorange price">
 <div class="package">Standard</div>
 <div class="divider"></div>
-<div class="amount"><%= ActionView::Base.new.number_to_currency(@products.find(6).price, :unit => "$") %></div>
+<div class="amount"><%= ActionView::Base.new.number_to_currency(@products.find(2).price, :unit => "$") %></div>
 <div class="duration">monthly</div>
 </div>
 <div class="featcontent">
@@ -244,7 +244,7 @@ Mark Stringer - <a href="#">webfolio.com</a> </span>
 <li>1000 GB Bandwith</li>
 </ul>
 </div>
-<div class="signup-btn"><a href=<%= pages_checkout_path %>>Signup now</a></div>
+<div class="signup-btn"><a href=<%= pages_checkout_path(:product_id => @products.find(2).id) %>>Signup now</a></div>
 
 </div>
 </div>
@@ -252,7 +252,7 @@ Mark Stringer - <a href="#">webfolio.com</a> </span>
 <div class="bgblue price">
 <div class="package">Premium</div>
 <div class="divider"></div>
-<div class="amount"><%= ActionView::Base.new.number_to_currency(Product.find(7).price, :unit => "$") %></div>
+<div class="amount"><%= ActionView::Base.new.number_to_currency(@products.find(3).price, :unit => "$") %></div>
 <div class="duration">monthly</div>
 </div>
 <div class="featcontent">
@@ -264,7 +264,7 @@ Mark Stringer - <a href="#">webfolio.com</a> </span>
 <li>1000 GB Bandwith</li>
 </ul>
 </div>
-<div class="signup-btn"><a href=<%= pages_checkout_path %>>Signup now</a></div>
+<div class="signup-btn"><a href=<%= pages_checkout_path(:product_id => @products.find(3).id) %>>Signup now</a></div>
 
 </div>
 </div>

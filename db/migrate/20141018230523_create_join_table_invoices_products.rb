@@ -1,9 +1,9 @@
 class CreateJoinTableInvoicesProducts < ActiveRecord::Migration
   def change
-    create_table :invoices_products, :id => false do |t|
-      t.references :invoice, :product
+    create_table :orders_products, :id => false do |t|
+      t.references :order, :product
     end
     
-    add_index :invoices_products, [:invoice_id, :product_id]
+    add_index :orders_products, [:order_id, :product_id]
   end
 end

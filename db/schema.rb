@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20141018230523) do
     t.datetime "updated_at"
   end
 
-  create_table "invoices", force: true do |t|
+  create_table "orders", force: true do |t|
     t.integer  "transaction_id"
     t.decimal  "price"
     t.string   "status"
@@ -34,12 +34,12 @@ ActiveRecord::Schema.define(version: 20141018230523) do
     t.datetime "updated_at"
   end
 
-  create_table "invoices_products", id: false, force: true do |t|
-    t.integer "invoice_id"
+  create_table "orders_products", id: false, force: true do |t|
+    t.integer "order_id"
     t.integer "product_id"
   end
 
-  add_index "invoices_products", ["invoice_id", "product_id"], name: "index_invoices_products_on_invoice_id_and_product_id"
+  add_index "orders_products", ["order_id", "product_id"], name: "index_orders_products_on_order_id_and_product_id"
 
   create_table "products", force: true do |t|
     t.string   "name"

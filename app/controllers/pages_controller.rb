@@ -7,12 +7,6 @@ class PagesController < ApplicationController
     @products = Product.all
   end
 
-  def checkout
-    @order = Order.new
-    @account = Account.new
-    @product = Product.find(params[:product_id])
-  end
-
   def checkout_with_paypal
   	redirect_to paypal_url("pages#checkout") # pages_checkout
   end

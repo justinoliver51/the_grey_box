@@ -1,8 +1,16 @@
 Rails.application.routes.draw do
   root 'pages#landing_page'
 
-  get 'checkout/show'
-  get "checkout/:id" => "checkout#show"
+  get "order/new"
+  #get "order/create"
+  post "order/create"
+  get "order/:id" => "order#new"
+  get "order/" => "order#show"
+  #resources :order
+
+  #resources :products do
+  #  resources :order
+  #end
 
   get "pages/checkout"
   get "pages/checkout:id" => "pages#checkout"

@@ -24,11 +24,14 @@ class OrderController < ApplicationController
   # POST /orders
   def create
     @order = Order.new(order_params)
-    if @registration.save
-      redirect_to @registration.paypal_url(registration_path(@registration))
-    else
-      render :new
+    if @order.save
+      puts "Blah"
     end
+    #if @order.save
+    #  redirect_to @order.paypal_url(registration_path(@order))
+    #else
+    #  render :new
+    #end
   end
 
   protect_from_forgery except: [:hook]

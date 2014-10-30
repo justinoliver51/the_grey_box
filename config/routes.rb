@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     resources :orders
   end
 
+  resources :checkout
+
   get "pages/checkout"
   get "pages/checkout:id" => "pages#checkout"
   get "pages/checkout_with_paypal"

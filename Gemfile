@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+source 'https://code.stripe.com'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.4'
@@ -24,9 +24,8 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
-
-# Justin added these:
-#gem 'sass-rails', '4.0.2'
+# Accept credit card payments over Stripe
+gem 'stripe'
 
 group :development do
   # Use sqlite3 as the database for Active Record

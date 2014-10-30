@@ -15,6 +15,8 @@
        of 1 for the product selected -->
   <% @products.each do |product| %>
     <%= product.name %>
+    <%= product.description %>
+    <%= product.price %>
     <%= field_set_tag do %>
       <% if product.id == @product.id %>
         <%= text_field_tag "products[#{product.id}][quantity]", 1  %>
@@ -24,7 +26,7 @@
     <% end %>
   <% end %>
 
-
+  <h1>Shipping Information</h1>
   <%= orders_form.fields_for :account do |u| %>
     <div class="form-group">
       <%= orders_form.label :name %>
@@ -46,8 +48,14 @@
       <%= orders_form.label :state %>
       <%= u.text_field :state, class: "form-control" %>
     </div>
+    <p>Checkout - no account required!</p>
     <div class="actions">
-      <%= orders_form.submit "Complete Order", class: "btn btn-success" %>
+      <%= orders_form.submit "Checkout", class: "btn btn-success" %>
     </div>
+    <p>Or checkout using PayPal<p>
+    <div class="actions">
+      <%= orders_form.submit "Checkout With Paypal", :type => :image, :src => "https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" %>
+    </div>
+
   <% end %>
 <% end %>

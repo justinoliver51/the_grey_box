@@ -1,15 +1,9 @@
 Rails.application.routes.draw do
   root 'pages#landing_page'
 
-  #get "order/new"
-  #post "order/create"
-  #get "order/:id" => "order#new"
-  #get "order/" => "order#show"
-  resources :order
-
-  #resources :products do
-  #  resources :order
-  #end
+  resources :products do
+    resources :orders
+  end
 
   get "pages/checkout"
   get "pages/checkout:id" => "pages#checkout"

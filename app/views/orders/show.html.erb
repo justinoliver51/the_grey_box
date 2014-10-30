@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @order.account.street %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @order.account.city %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @order.account.state %>
+</p>
+
+<%= link_to 'Back', product_orders_path %>

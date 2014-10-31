@@ -26,6 +26,11 @@
     <% end %>
   <% end %>
 
+  <br />
+  <p>Tax<p>
+  <p>Shipping<p>
+  <p>Total<p>
+
   <h1>Shipping Information</h1>
   <%= orders_form.fields_for :account do |u| %>
     <div class="form-group">
@@ -48,14 +53,44 @@
       <%= orders_form.label :state %>
       <%= u.text_field :state, class: "form-control" %>
     </div>
-    <p>Checkout - no account required!</p>
-    <div class="actions">
-      <%= orders_form.submit "Checkout", class: "btn btn-success" %>
-    </div>
-    <p>Or checkout using PayPal<p>
-    <div class="actions">
-      <%= orders_form.submit "Checkout With Paypal", :type => :image, :src => "https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" %>
-    </div>
-
   <% end %>
+  
+  <h1> Credit Card Information </h1>
+  <div id="stripe_error" class="alert alert-danger" style="display:none">
+    <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser   settings.
+    </noscript>
+  </div>
+  <div class="form-group">
+        <div class="row">
+          <div class="col-md-8">
+            <%= label_tag :card_number, "Credit Card Number" %>
+            <%= text_field_tag :card_number, nil, { :name => nil, :'data-stripe' => "number", class: "form-control" } %>
+          </div>
+          <div class="col-md-4">
+            <%= label_tag :card_code, "CVC" %>
+            <%= text_field_tag :card_code, nil, { :name => nil, :'data-stripe' => "cvc", class: "form-control" } %>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= label_tag nil, "Expiration Date" %>
+        <div class="row">
+          <div class="col-md-3">
+            <%= select_month nil, { use_two_digit_numbers: true }, { :name => nil, :'data-stripe' => "exp-month", class: "form-control" } %>
+          </div>
+          <div class="col-md-3">
+            <%= select_year nil, { start_year: Date.today.year, end_year: Date.today.year+10 }, { :name => nil, :'data-stripe' => "exp-year", class: "form-control" } %>
+          </div>
+        </div>
+      </div>
+
+  <p>Checkout - no account required!</p>
+  <div class="actions">
+    <%= orders_form.submit "Checkout", class: "btn btn-success" %>
+  </div>
+  <p>Or checkout using PayPal<p>
+  <div class="actions">
+    <%= orders_form.submit "Checkout With Paypal", :type => :image, :src => "https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" %>
+  </div>
+
 <% end %>

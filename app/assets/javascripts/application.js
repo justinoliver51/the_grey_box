@@ -16,3 +16,4 @@
 //= require custom
 //= require turbolinks
 //= require jquery.flexslider-min
+//= require_tree

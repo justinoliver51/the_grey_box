@@ -32,13 +32,11 @@ class OrdersController < ApplicationController
     @order.status = "PURCHASE_PENDING"
     @order.transaction_id = 0
     @order.price = @product.price
+    price = 0
 
-    #@account.save
+    #@account.save # Force fail!
     if @order.save
-      #@order.account = @account
-
       # Get the products that were selected
-      price = 0
       products = params[:products]
       for key,value in products
         quantity = value["quantity"].to_i
@@ -53,25 +51,32 @@ class OrdersController < ApplicationController
         end
       end
 
+      # Update the price
       @order.update(price: price)
+      Stripe.api_key = Rails.application.secrets.STRIPE_API_KEY
+      token = params[:stripeToken]
+      
+      # If the token is blank, pay with PayPal
+      if token.blank? 
+        #redirect_to @order.paypal_url(registration_path(@order))
+      else
+        # Otherwise, pay with Stripe
+        begin
+          charge = Stripe::Charge.create(
+            :amount => (@order.price * 100).floor,
+            :currency => "usd",
+            :card => token
+            )
+          flash[:notice] = "Thanks for ordering!"
+        rescue Stripe::CardError => e
+          flash[:danger] = e.message
+        end
 
-      redirect_to root_path
-      #redirect_to product_orders_path(@product, @order)
-      #redirect_to @order.paypal_url(registration_path(@order))
+        redirect_to root_path
+      end
     else
       render :new
     end
-  end
-
-  protect_from_forgery except: [:hook]
-  def hook
-    params.permit! # Permit all Paypal input params
-    status = params[:payment_status]
-    if status == "Completed"
-      @order = Registration.find params[:invoice]
-      @order.update_attributes notification_params: params, status: status, transaction_id: params[:txn_id], purchased_at: Time.now
-    end
-    render nothing: true
   end
 
   private
@@ -82,6 +87,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:products, account_attributes: [:street, :city, :state, :full_name, :email])
+      params.require(:order).permit(:products, :stripeToken, account_attributes: [:street, :city, :state, :full_name, :email])
     end
 end

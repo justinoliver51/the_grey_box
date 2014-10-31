@@ -34,7 +34,6 @@ class OrdersController < ApplicationController
     @order.price = @product.price
     price = 0
 
-    #@account.save # Force fail!
     if @order.save
       # Get the products that were selected
       products = params[:products]
@@ -58,7 +57,7 @@ class OrdersController < ApplicationController
       
       # If the token is blank, pay with PayPal
       if token.blank? 
-        #redirect_to @order.paypal_url(registration_path(@order))
+        redirect_to @order.paypal_url(orders_path(@order))
       else
         # Otherwise, pay with Stripe
         begin
@@ -67,7 +66,7 @@ class OrdersController < ApplicationController
             :currency => "usd",
             :card => token
             )
-          flash[:notice] = "Thanks for ordering!"
+          # FIXME: Update order here to reflect successful purchase
         rescue Stripe::CardError => e
           flash[:danger] = e.message
         end

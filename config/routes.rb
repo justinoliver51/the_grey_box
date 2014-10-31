@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :orders
   end
 
-  resources :checkout
+  resources :orders
 
   get "pages/checkout"
   get "pages/checkout:id" => "pages#checkout"

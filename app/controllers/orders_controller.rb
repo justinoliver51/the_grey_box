@@ -56,9 +56,9 @@ class OrdersController < ApplicationController
       token = params[:stripeToken]
       
       # If the token is blank, pay with PayPal
-      if token.blank? 
+      if token.blank? #and (params[:commit] == "checkout_paypal")
         redirect_to @order.paypal_url(orders_path(@order))
-      else
+      else #if params[:commit] == "checkout_stripe"
         # Otherwise, pay with Stripe
         begin
           charge = Stripe::Charge.create(
@@ -72,9 +72,11 @@ class OrdersController < ApplicationController
         end
 
         redirect_to root_path
+      #else
+      #  render :new, locals: {products: @products, user: @account}
       end
     else
-      render :new
+      render :new, locals: {products: @products, user: @account}
     end
   end
 
@@ -86,6 +88,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:products, :stripeToken, account_attributes: [:street, :city, :state, :full_name, :email])
+      params.require(:order).permit(:commit, :products, :stripeToken, account_attributes: [:street, :city, :state, :full_name, :email])
     end
 end

@@ -86,11 +86,11 @@
 
   <p>Checkout - no account required!</p>
   <div class="actions">
-    <%= orders_form.submit "Checkout", class: "btn btn-success" %>
+    <%= orders_form.submit "Checkout", :name => 'checkout_stripe', class: "btn btn-success" %>
   </div>
   <p>Or checkout using PayPal<p>
   <div class="actions">
-    <%= orders_form.submit "Checkout With Paypal", :type => :image, :src => "https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" %>
+    <%= orders_form.submit "Checkout With Paypal", :name => 'checkout_paypal', :type => :image, :src => "https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" %>
   </div>
 
 <% end %>
